@@ -10,7 +10,7 @@ var helloRouter = require('./routes/hello');
 var notesRouter = require('./routes/notes');
 var app = express();
 
-// view engine setup
+// view engine setups
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 
