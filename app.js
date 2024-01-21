@@ -10,7 +10,7 @@ var users = require('./routes/users');
 var helloRouter = require('./routes/hello');
 var notesRouter = require('./routes/notes');
 var catRouter = require('./routes/cat');
-//var dogRouter = require('./routes/dog');
+var dogRouter = require('./routes/dog');
 var notes_from_bRouter = require('./routes/notes_from_b');
 
 var app = express();
@@ -21,7 +21,7 @@ app.set('view engine', 'jade');
 app.use('/hello', helloRouter);
 app.use('/notes', notesRouter);
 app.use('/cat', catRouter);
-//app.use('/dog', dogRouter);
+app.use('/dog', dogRouter);
 app.use('/notes_from_b', notes_from_bRouter);
 
 // uncomment after placing your favicon in /public
@@ -50,7 +50,11 @@ app.use(function(err, req, res, next) {
 
   // render the error page
   res.status(err.status || 500);
-  res.render('error');
+  res.render('error', {
+    message: err.message,
+    error: err,
+    title: 'エラー発生' // ここでtitleを設定
+  });
 });
 
 module.exports = app;
